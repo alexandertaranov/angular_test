@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" ng-app="dataTable">
+<head>
+  <meta charset="utf-8">
+  <title>Google Phone Gallery</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+  <script src="js/controllers2.js"></script>
+</head>
+<body ng-controller="NewsListController">
+<div class="row">
+  <div class="col-md-3 col-md-offset-1">
+    Поиск
+    <input type="text" class="form-control" placeholder="search" ng-model="query">
+    <ul style="list-style: none">
+      <li>
+        <div class="checkbox" ng-click="sort('date')">
+
+          <label><input type="checkbox" id="srtd"/></label>
+        </div>
+      </li>
+      <!--<li>-->
+      <!--<div class="checkbox" ng-click="sort('date')">-->
+      <!--<input type="checkbox" id="srtd"/>-->
+      <!--<label for="srtd">сортировать по дате</label>-->
+      <!--</div>-->
+      <!--</li>        -->
+    </ul>
+  </div>
+</div>
+<div class="col-md-10 col-lg-offset-1">
+  <table class="table-striped table">
+    <tr ng-repeat="new in news | filter:{text:query} | orderBy:filterName">
+      <td>Новость {{new.number}}</td>
+      <td>{{new.text}}</td>
+      <td>{{new.date}}</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
