@@ -8,7 +8,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
   <script src="js/controllers.js"></script>
 </head>
-<body ng-app>
-{{3+5}}
+<body ng-controller="PhoneListCtrl">
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h1>{{title}}</h1>
+      <input type="text" ng-model="query">
+      <table class="table-striped table">
+        <tr ng-repeat="phone in phones | filter:doneAndFilter | filter:{name:query}">
+          <td>{{phone.name}}</td>
+          <td>{{phone.snippet}}</td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
