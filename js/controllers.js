@@ -4,27 +4,16 @@
 
 var phonecatApp = angular.module('phonecatApp', []);
 
-phonecatApp.controller('PhoneListCtrl', function($scope) {
+phonecatApp.controller('PhoneListCtrl', function($scope, $http) {
   $scope.title = 'Phones';
-  $scope.phones = [
-    {'name': 'Nexus S',
-     'snippet': 'Fast just got faster with Nexus S.',
-     'status':true,
-     'priority': 3},
-    {'name': 'Motorola XOOM™ with Wi-Fi',
-     'snippet': 'The Next, Next Generation tablet.',
-     'status':true,
-     'priority': 1},
-    {'name': 'MOTOROLA XOOM™',
-     'snippet': 'The Next, Next Generation tablet.',
-     'status': true,
-     'priority': 2}
-  ];
-    var date = new Date();
-    $scope.today = date;
+
+    $http.get('phones/phones.json').success(function(data, status, headers, config){
+        console.log('Data:', data, '\n\n Status:', status, '\n\n Headers:', headers, '\n\n Config:', config);
+        $scope.phones = data;
+    });
 
     $scope.doneAndFilter = function(phi) {
-        return phi.name && phi.priority > 1;
+        return phi.name;//&& phi.priority > 1;
     }
 
 });
@@ -42,13 +31,16 @@ dataTable.controller('NewsListController', function($scope){
             'text': "Bodog",
             'date': "25.01.14"}
     ];
-    $scope.filterName = undefined;
-    $scope.sort = function(filterValue) {
-        if ($scope.filterName != filterValue){
-            $scope.filterName = filterValue;
+    $scope.sortField = undefined;
+    $scope.reverse = false;
+
+    $scope.sort = function(fieldName) {
+        if ($scope.sortField === fieldName){
+            $scope.reverse = !$scope.reverse;
         }
         else {
-            $scope.filterName = undefined;
+            $scope.sortField = fieldName;
+            $scope.reverse = false;
         }
-    }
+    };
 });

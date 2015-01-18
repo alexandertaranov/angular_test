@@ -1,0 +1,10 @@
+
+.login-form input {
+  margin: 15px auto;
+}
+
+.login-form input[type='submit'] {
+  margin: 15px auto;
+  background: #269abc;
+  color: #fff;
+}

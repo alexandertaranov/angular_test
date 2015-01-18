@@ -4,11 +4,13 @@
   <meta charset="utf-8">
   <title>Google Phone Gallery</title>
   <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
   <script src="js/controllers.js"></script>
 </head>
 <body ng-controller="NewsListController">
 <div class="container">
+
   <div class="row">
     <div class="col-md-3 col-md-offset-1">
       Поиск
@@ -24,7 +26,7 @@
           <th>Text</th>
           <th ng-click="sort('date')">Date</th>
         </tr></thead>
-        <tr ng-repeat="new in news | filter:{text:query} | orderBy:filterName">
+        <tr ng-repeat="new in news | filter:{text:query} | orderBy:sortField:reverse">
           <td>Новость {{new.number}}</td>
           <td>{{new.text}}</td>
           <td>{{new.date}}</td>
